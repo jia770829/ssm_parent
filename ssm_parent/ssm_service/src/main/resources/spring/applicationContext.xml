@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--引入持久层的配置文件-->
+    <import resource="classpath*:spring/spring-dao.xml"></import>
+
+    <!--扫描包-->
+    <context:component-scan base-package="com.heima.service"></context:component-scan>
+
+    <!--事务的配置-->
+        <!--创建事务管理器对象(里面封装了很多的有关事务的方法)-->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <!--引入数据源-->
+            <property name="dataSource" ref="dataSource"></property>
+        </bean>
+
+            <!--其实就是配置aop切面类的过程-->
+        <!--配置事务的通知对象（配置通知）（就是在事务完成的前后添加以一些新的功能）-->
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <!--配置指定的方法，支持事务的隔离传播属性-->
+                <tx:method name="find*" isolation="DEFAULT" read-only="true" propagation="SUPPORTS" timeout="-1"/>
+                <!--配置其他所有的方法，需要事务的传播属性-->
+                <tx:method name="*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" timeout="-1"></tx:method>
+            </tx:attributes>
+        </tx:advice>
+
+    <!--配置aop-->
+<aop:config>
+    <!--切入点的配置-->
+    <aop:pointcut id="pointCut" expression="execution(* com.heima.service.impl.*.*(..))"></aop:pointcut>
+    <!--通知的配置-->
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"></aop:advisor>
+</aop:config>
+
+
+
+
+
+</beans>
