@@ -27,4 +27,13 @@ public class ProductServiceImpl implements ProductService {
         List<Product> listProduct=productMapper.findAll();
         return listProduct;
     }
+
+    /**
+     * 添加操作
+     */
+    @Override
+    public void add(Product product) {
+        //调用dao层，实现添加的操作
+        productMapper.add(product);
+    }
 }

@@ -1,5 +1,7 @@
 package com.heima.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 产品表
  */
@@ -8,7 +10,8 @@ public class Product {
     private String productNum;// 产品编号 varchar
     private String productName;// 产品名称 varchar
     private String cityName;// 城市名称 varchar
-    private String departureTime;// 出发城市 varchar
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String departureTime;// 出发时间 datetime
     private Double productPrice;// 产品价格 numeric(8,2)
     private String productDesc;// 产品描述 varchar
     private Integer productStatus;// 产品状态 （0关闭 1开启）
