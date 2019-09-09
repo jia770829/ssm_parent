@@ -3,6 +3,7 @@ package com.heima.controller;
 import com.heima.domain.Product;
 import com.heima.service.ProductService.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * 产品的管理
  */
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 
@@ -36,6 +37,17 @@ public class ProductController {
         //4、设置返回的页面
         modelAndView.setViewName("product-list");
         return modelAndView;
+    }
+
+    @RequestMapping("/add.do")
+    public String add(Product product){
+        //创建一个modelAndView对象
+        ModelAndView modelAndView=new ModelAndView();
+        //调用service层进行添加
+        productService.add(product);
+        //设置返回页面
+        return "redirect:/product/findAll.do";
+
     }
 
 }

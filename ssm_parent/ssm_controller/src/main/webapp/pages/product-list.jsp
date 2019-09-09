@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -148,11 +149,8 @@
 							class="table table-bordered table-striped table-hover dataTable">
 							<thead>
 								<tr>
-									<th class="" style="padding-right: 0px;"><input
-										id="selall" type="checkbox" class="icheckbox_square-blue">
-									</th>
-									<th class="sorting_asc">ID</th>
 
+									<th class="sorting_asc">ID</th>
 									<th class="sorting">产品编号</th>
 									<th class="sorting">产品名称</th>
 									<th class="sorting">出发城市</th>
@@ -175,9 +173,10 @@
 									<td>${product.productNum}</td>
 									<td>${product.productName}</td>
 									<td>${product.cityName}</td>
+										<%--<td><fmt:formatDate value="${product.departureTime}" pattern="yyyy-MM-ss HH:mm:ss"></fmt:formatDate></td>--%>
 									<td>${product.departureTime}</td>
 									<td>${product.productPrice}</td>
-									<td>${product.productStatus}</td>
+									<td>${product.productStatus==1?"开启":"关闭"}</td>
 
 
 									<td class="text-center">

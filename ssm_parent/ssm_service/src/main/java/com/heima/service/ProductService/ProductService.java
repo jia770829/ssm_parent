@@ -15,4 +15,10 @@ public interface ProductService {
      */
     public List<Product> findAll();
 
+
+    /**
+     * 添加操作
+     * @param product
+     */
+    void add(Product product);
 }

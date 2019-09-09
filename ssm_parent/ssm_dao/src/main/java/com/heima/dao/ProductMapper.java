@@ -1,6 +1,7 @@
 package com.heima.dao;
 
 import com.heima.domain.Product;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +19,13 @@ public interface ProductMapper {
      */
     @Select("select * from product")
     public List<Product> findAll();
+
+    /**
+     * 添加操作
+     */
+    @Insert("insert into product values(#{id},#{productNum},#{productName},#{cityName},#{departureTime}," +
+            "#{productPrice},#{productDesc},#{productStatus})")
+    void add(Product product);
+
+
 }
