@@ -36,4 +36,23 @@ public class ProductServiceImpl implements ProductService {
         //调用dao层，实现添加的操作
         productMapper.add(product);
     }
+
+    /**
+     * 根据id值进行查询
+     * @param productId
+     * @return
+     */
+    @Override
+    public Product findById(String productId) {
+        return productMapper.findById(productId);
+    }
+
+    /**
+     * 修改操作
+     * @param product
+     */
+    @Override
+    public void update(Product product) {
+        productMapper.update(product);
+    }
 }
