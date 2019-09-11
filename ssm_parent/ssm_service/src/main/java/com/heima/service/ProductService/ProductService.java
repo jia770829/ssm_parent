@@ -21,4 +21,17 @@ public interface ProductService {
      * @param product
      */
     void add(Product product);
+
+    /**
+     * 根据id值进行查询
+     * @param productId
+     * @return
+     */
+    Product findById(String productId);
+
+    /**
+     * 修改操作
+     * @param product
+     */
+    void update(Product product);
 }

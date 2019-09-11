@@ -179,18 +179,20 @@
 									<td>${product.productStatus==1?"开启":"关闭"}</td>
 
 
-									<td class="text-center">
-										<button type="button" class="btn bg-olive btn-xs"
-											onclick='location.href="all-order-manage-edit.html"'>订单</button>
-										<button type="button" class="btn bg-olive btn-xs"
-											onclick='location.href="all-order-manage-edit.html"'>查看</button>
-									</td>
+										<td class="text-center">
+											<button type="button" class="btn bg-olive btn-xs"
+													onclick='delOne(${product.id})'>删除</button>
+											<button type="button" class="btn bg-olive btn-xs"
+													onclick='location.href="all-order-manage-edit.html"'>订单</button>
+											<button type="button" class="btn bg-olive btn-xs"
+													onclick='location.href="${pageContext.request.contextPath}/product/updateUI?productId=${product.id}"'>修改</button>
+										</td>
+								</tr>
 								</tr>
 							</c:forEach>
 							</tbody>
 
 						</table>
-						<!--数据列表/-->
 
 						<!--工具栏-->
 						<%--<div class="pull-left">--%>
